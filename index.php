@@ -2,11 +2,11 @@
 
 require_once __DIR__ . '/src/db.php';
 
-try {
-    $stmt = $pdo->query("SELECT NOW() AS server_time");
-    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+$db = new Database();
 
-    echo 'Database connected. Server time: ' . $result['server_time'];
-} catch (PDOException $e) {
+try {
+    $row = $db->fetch("SELECT NOW() AS server_time");
+    echo 'Database connected. Server time: ' . $row['server_time'];
+} catch (Exception $e) {
     echo 'Query failed: ' . $e->getMessage();
 }

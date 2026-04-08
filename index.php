@@ -12,13 +12,17 @@ try {
     $getParams = $request->getGetParams();
     $postParams = $request->getPostParams();
     $chargeId = $postParams['objectId'] ?? $getParams['charge_id'] ?? null;
+    $status = $postParams['status'] ?? $getParams['status'] ?? 'fail';
 
     write_log("Get params are : " . json_encode($getParams));
     write_log("Post params are : " . json_encode($postParams));
 
     $inquiryBaseUrl = getenv('INQUIRY_URL') ?: 'http://localhost:8000/proc.php?action=payment_inquiry';
     $separator = strpos($inquiryBaseUrl, '?') === false ? '?' : '&';
-    $redirectUrl = $inquiryBaseUrl . $separator . 'charge_id=' . urlencode($chargeId);
+    $redirectUrl = $inquiryBaseUrl
+        . $separator
+        . 'charge_id=' . urlencode($chargeId)
+        . '&status=' . urlencode($status);
 
     write_log("Redirecting to inquiry page: $redirectUrl");
 

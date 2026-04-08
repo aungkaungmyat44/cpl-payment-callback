@@ -12,7 +12,7 @@ try {
     $getParams = $request->getGetParams();
     $postParams = $request->getPostParams();
     $chargeId = $postParams['objectId'] ?? $getParams['charge_id'] ?? null;
-    $status = $postParams['status'] ?? $getParams['status'] ?? 'fail';
+    $status = $postParams['status'] ?? $getParams['status'] ?? 'false';
 
     write_log("Get params are : " . json_encode($getParams));
     write_log("Post params are : " . json_encode($postParams));

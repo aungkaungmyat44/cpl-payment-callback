@@ -38,9 +38,9 @@ try {
     $referenceNumber = '';
     $decodedChargeResponse = is_array($chargeResponse) ? $chargeResponse : json_decode($chargeResponse, true);
     write_log("Decoded response is :" . json_encode($decodedChargeResponse));
-    
-    if (is_array($decodedChargeResponse)) {
-        $referenceNumber = $decodedChargeResponse['data']['reference_order'] ?? '';
+
+    if (!empty($decodedChargeResponse) and $decodedChargeResponse != []) {
+        $referenceNumber = $decodedChargeResponse['reference_order'] ?? '';
     }
 
     $cplInquiryUrl = getenv('CPL_INQUIRY_URL') ?: '';

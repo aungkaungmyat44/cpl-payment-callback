@@ -1,5 +1,6 @@
 <?php
 
+date_default_timezone_set('Asia/Bangkok');
 require_once __DIR__ . '/src/db.php';
 require_once __DIR__ . '/src/helper.php';
 require_once __DIR__ . '/src/request.php';
